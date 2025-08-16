@@ -221,7 +221,6 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\EFTest.csproj.Up2Date
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\EFTest.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFTest\EFTest\obj\Debug\net9.0\refint\EFTest.dll

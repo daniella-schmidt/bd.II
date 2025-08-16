@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\effloristry\\effloristry\\data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|solutionrelative:effloristry\\data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\effloristry\\effloristry\\models\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|solutionrelative:effloristry\\models\\invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\effloristry\\effloristry\\models\\iteminvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|solutionrelative:effloristry\\models\\iteminvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\effloristry\\effloristry\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|solutionrelative:effloristry\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\effloristry\\effloristry\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|solutionrelative:effloristry\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\effloristry\\effloristry\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{737B91A2-7323-4CEE-A788-8A2CEAC405D9}|EFFloristry\\EFFloristry.csproj|solutionrelative:effloristry\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 301,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\appsettings.json",
+              "RelativeDocumentMoniker": "EFFloristry\\appsettings.json",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\appsettings.json",
+              "RelativeToolTip": "EFFloristry\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-16T00:41:50.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Program.cs",
+              "RelativeDocumentMoniker": "EFFloristry\\Program.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Program.cs",
+              "RelativeToolTip": "EFFloristry\\Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T00:41:06.2Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Data\\DbContext.cs",
+              "RelativeDocumentMoniker": "EFFloristry\\Data\\DbContext.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Data\\DbContext.cs",
+              "RelativeToolTip": "EFFloristry\\Data\\DbContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAIA1wCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T00:38:10.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Invoice.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Models\\Invoice.cs",
+              "RelativeDocumentMoniker": "EFFloristry\\Models\\Invoice.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Models\\Invoice.cs",
+              "RelativeToolTip": "EFFloristry\\Models\\Invoice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T00:24:23.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ItemInvoice.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Models\\ItemInvoice.cs",
+              "RelativeDocumentMoniker": "EFFloristry\\Models\\ItemInvoice.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Models\\ItemInvoice.cs",
+              "RelativeToolTip": "EFFloristry\\Models\\ItemInvoice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T00:34:33.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "EFFloristry\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFFloristry\\EFFloristry\\Models\\Product.cs",
+              "RelativeToolTip": "EFFloristry\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-16T00:32:30.471Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
