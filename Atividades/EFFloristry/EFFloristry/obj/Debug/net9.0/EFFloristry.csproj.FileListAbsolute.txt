@@ -227,3 +227,4 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFFloristry\EFFlor
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFFloristry\EFFloristry\obj\Debug\net9.0\EFFloristry.pdb
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFFloristry\EFFloristry\obj\Debug\net9.0\EFFloristry.genruntimeconfig.cache
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFFloristry\EFFloristry\obj\Debug\net9.0\ref\EFFloristry.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\Atividades\EFFloristry\EFFloristry\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

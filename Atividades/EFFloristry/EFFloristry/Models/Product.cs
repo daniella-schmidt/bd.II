@@ -10,5 +10,6 @@ namespace EFFloristry.Models
         public string? ProductDescription { get; set; }
         public float? Price { get; set; }
     }
+
 }
 

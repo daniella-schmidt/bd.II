@@ -1,8 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model ICollection<EFFloristry.Models.Product>
+
+@{
+    ViewData["Title"] = "Lista de Produtos";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold text-primary">
+            Catálogo de Produtos
+        </h1>
+        <p class="text-muted">
+            Total de <strong>@Model.Count</strong> produtos cadastrados
+        </p>
+    </div>
+
+    <div class="card shadow-lg rounded-3">
+        <div class="card-body p-4">
+            <table class="table table-hover table-bordered align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@p.Id</td>
+                            <td>@p.ProductDescription</td>
+                            <td>@p.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
