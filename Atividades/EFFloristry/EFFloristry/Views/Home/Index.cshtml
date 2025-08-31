@@ -1,40 +1,194 @@
 ﻿@model ICollection<EFFloristry.Models.Product>
-
 @{
     ViewData["Title"] = "Lista de Produtos";
 }
 
-<div class="container mt-5">
-    <div class="text-center mb-4">
-        <h1 class="display-5 fw-bold text-primary">
-            Catálogo de Produtos
-        </h1>
-        <p class="text-muted">
-            Total de <strong>@Model.Count</strong> produtos cadastrados
-        </p>
+<div class="container mt-4">
+    <!-- Header com botão de adicionar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-success mb-1">
+                <i class="fas fa-seedling me-2"></i>
+                Catálogo de Produtos
+            </h2>
+            <p class="text-muted mb-0">
+                Total de <strong>@Model.Count</strong> produtos cadastrados
+            </p>
+        </div>
+        <a asp-controller="Home" asp-action="Create" class="btn btn-success btn-lg">
+            <i class="fas fa-plus me-2"></i>
+            Novo Produto
+        </a>
     </div>
 
-    <div class="card shadow-lg rounded-3">
-        <div class="card-body p-4">
-            <table class="table table-hover table-bordered align-middle text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Preço (R$)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var p in Model)
-                    {
-                        <tr>
-                            <td class="fw-bold">@p.Id</td>
-                            <td>@p.ProductDescription</td>
-                            <td>@p.Price</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+    <!-- Tabela de produtos -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            @if (Model.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-success">
+                            <tr>
+                                <th scope="col" class="text-center">#</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col" class="text-center">Preço (R$)</th>
+                                <th scope="col" class="text-center">Categoria</th>
+                                <th scope="col" class="text-center">Estoque</th>
+                                <th scope="col" class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in Model)
+                            {
+                                <tr>
+                                    <td class="text-center fw-bold">@p.Id</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-leaf text-success me-2"></i>
+                                            @p.ProductDescription
+                                        </div>
+                                    </td>
+                                    <td class="text-center fw-bold text-success">
+                                        @p.Price.ToString("C")
+                                    </td>
+                                    <td class="text-center">
+                                        @if (!string.IsNullOrEmpty(p.Category))
+                                        {
+                                            <span class="badge bg-light text-dark">@p.Category</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (p.Stock.HasValue)
+                                        {
+                                            if (p.Stock <= 5)
+                                            {
+                                                <span class="badge bg-danger">@p.Stock unidades</span>
+                                            }
+                                            else if (p.Stock <= 20)
+                                            {
+                                                <span class="badge bg-warning text-dark">@p.Stock unidades</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-success">@p.Stock unidades</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a asp-controller="Home"
+                                               asp-action="Update"
+                                               asp-route-id="@p.Id"
+                                               class="btn btn-outline-warning"
+                                               title="Editar produto">
+                                                Atualizar
+                                            </a>
+
+                                            <form asp-controller="Home"
+                                                  asp-action="Delete"
+                                                  asp-route-id="@p.Id"
+                                                  method="post"
+                                                  class="d-inline"
+                                                  onsubmit="return confirm('Tem certeza que deseja excluir o produto: @p.ProductDescription?')">
+                                                <button type="submit"
+                                                        class="btn btn-outline-danger"
+                                                        title="Excluir produto">
+                                                    Excluir
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <!-- Estado vazio -->
+                <div class="text-center py-5">
+                    <i class="fas fa-seedling fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted mb-3">Nenhum produto cadastrado</h4>
+                    <p class="text-muted mb-4">Comece adicionando seu primeiro produto ao catálogo.</p>
+                    <a asp-controller="Home" asp-action="Create" class="btn btn-success btn-lg">
+                        <i class="fas fa-plus me-2"></i>
+                        Cadastrar Primeiro Produto
+                    </a>
+                </div>
+            }
         </div>
     </div>
+
+    @if (Model.Count > 0)
+    {
+        <!-- Estatísticas rápidas -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-center bg-light">
+                    <div class="card-body">
+                        <i class="fas fa-chart-bar fa-2x text-primary mb-2"></i>
+                        <h5>Total de Produtos</h5>
+                        <h3 class="text-primary">@Model.Count</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-light">
+                    <div class="card-body">
+                        <i class="fas fa-dollar-sign fa-2x text-success mb-2"></i>
+                        <h5>Valor Total</h5>
+                        <h3 class="text-success">@Model.Sum(p => p.Price).ToString("C")</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-light">
+                    <div class="card-body">
+                        <i class="fas fa-boxes fa-2x text-warning mb-2"></i>
+                        <h5>Estoque Total</h5>
+                        <h3 class="text-warning">@(Model.Where(p => p.Stock.HasValue).Sum(p => p.Stock.Value)) un.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+<style>
+    .btn-group-sm .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .table-success th {
+        background-color: #d4edda !important;
+        color: #155724 !important;
+        border-color: #c3e6cb !important;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+</style>

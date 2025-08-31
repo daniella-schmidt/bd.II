@@ -1,30 +1,85 @@
 ﻿@model ICollection<EFTest.Models.Student>
-
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">@Model.Count estudantes.</h1>
-    <table class="table table-responsive table-hover table-striped-columns">
-        <thead class="toast-header">
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>Data Matricula</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var s in Model)
-            {
+<div class="container mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@Model.Count estudantes</h2>
+        <a asp-controller="Home" asp-action="Create" class="btn btn-primary">
+            Novo Estudante
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
                 <tr>
-                    <td>@s.Id</td>
-                    <td>@s.FirstMidName</td>
-                    <td>@s.LastName</td>
-                    <td>@s.EnrollmentDate.ToShortDateString()</td>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Sobrenome</th>
+                    <th>Data Matrícula</th>
+                    <th class="text-center">Ações</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var s in Model)
+                {
+                    <tr>
+                        <td>@s.Id</td>
+                        <td>@s.FirstMidName</td>
+                        <td>@s.LastName</td>
+                        <td>@s.EnrollmentDate.ToShortDateString()</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Home"
+                                   asp-action="Update"
+                                   asp-route-id="@s.Id"
+                                   class="btn btn-sm btn-warning">
+                                    Editar
+                                </a>
+
+                                <form asp-controller="Home"
+                                      asp-action="Delete"
+                                      asp-route-id="@s.Id"
+                                      method="post"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Tem certeza que deseja excluir este estudante?')">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        Excluir
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.Count == 0)
+    {
+        <div class="text-center mt-5">
+            <p class="text-muted">Nenhum estudante cadastrado.</p>
+            <a asp-controller="Home" asp-action="Create" class="btn btn-primary">
+                Cadastrar Primeiro Estudante
+            </a>
+        </div>
+    }
 </div>

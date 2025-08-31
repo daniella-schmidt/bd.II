@@ -1,0 +1,53 @@
+﻿@model EFTest.Models.Student
+@{
+    ViewData["Title"] = "Editar Estudante";
+}
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Editar Estudante</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Update" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        @* Campo oculto para o ID *@
+                        <input asp-for="Id" type="hidden" />
+
+                        <div class="mb-3">
+                            <label asp-for="FirstMidName" class="form-label">Nome</label>
+                            <input asp-for="FirstMidName" class="form-control" placeholder="Nome completo" />
+                            <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Sobrenome</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Sobrenome" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EnrollmentDate" class="form-label">Data de Matrícula</label>
+                            <input asp-for="EnrollmentDate" type="date" class="form-control" />
+                            <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-warning text-dark">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
