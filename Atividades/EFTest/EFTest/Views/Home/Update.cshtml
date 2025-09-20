@@ -11,10 +11,9 @@
                     <h5 class="mb-0">Editar Estudante</h5>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Update" method="post">
+                    <form asp-action="Update" asp-route-id="@Model.Id" method="post">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-                        @* Campo oculto para o ID *@
                         <input asp-for="Id" type="hidden" />
 
                         <div class="mb-3">

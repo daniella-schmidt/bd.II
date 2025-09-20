@@ -1,0 +1,40 @@
+﻿@model EFTest.Models.Course
+@{
+    ViewData["Title"] = "Editar Curso";
+}
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Editar Curso</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Update" asp-route-id="@Model.Id" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <input asp-for="Id" type="hidden" />
+
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Nome</label>
+                            <input asp-for="Name" class="form-control" placeholder="Nome" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-warning text-dark">Atualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

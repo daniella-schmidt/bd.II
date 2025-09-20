@@ -1,26 +1,17 @@
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using EFTest.Data;
-using EFTest.Models;
+ï»¿using EFTest.Models;
 using EFTest.Repository;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Diagnostics;
 
 namespace EFTest.Controllers
 {
-    public class HomeController : Controller
+    public class CourseController(ICourseRepository courseRepository) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IStudentRepository _studentRepository;
-        public HomeController(ILogger<HomeController> logger, IStudentRepository studentRepository)
-        {
-            _studentRepository = studentRepository;
-            _logger = logger;
-        }
-
+        private readonly ICourseRepository _courseRepository = courseRepository;
+ 
         public async Task<IActionResult> Index()
         {
-            return View(await _studentRepository.GetAll());
+            return View(await _courseRepository.GetAll());
         }
 
         [HttpGet]
@@ -30,25 +21,25 @@ namespace EFTest.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Student student)
+        public async Task<IActionResult> Create(Course course)
         {
             if (ModelState.IsValid)
             {
-                await _studentRepository.Create(student);
+                await _courseRepository.Create(course);
                 return RedirectToAction("Index");
             }
-            return View(student);
+            return View(course);
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int Id)
-        { 
-            var student = await _studentRepository.GetById(Id);
-            if (student == null)
+        {
+            var course = await _courseRepository.GetById(Id);
+            if (course == null)
             {
                 return NotFound();
             }
-            await _studentRepository.Delete(student);
+            await _courseRepository.Delete(course);
             return RedirectToAction("Index");
         }
 
@@ -56,8 +47,8 @@ namespace EFTest.Controllers
         public async Task<IActionResult> Update(int? id)
         {
             if (!id.HasValue)
-            { 
-            return BadRequest();
+            {
+                return BadRequest();
             }
 
             if (id == null)
@@ -65,21 +56,21 @@ namespace EFTest.Controllers
                 return NotFound();
             }
 
-            var student = await _studentRepository.GetById(id.Value);
-            if (student == null)
+            var course = await _courseRepository.GetById(id.Value);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(course);
         }
 
-        // Método POST para processar a atualização
+        // MÃ©todo POST para processar a atualizaÃ§Ã£o
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, Student student)
+        public async Task<IActionResult> Update(int id, Course course)
         {
-            if (id != student.Id)
+            if (id != course.Id)
             {
                 return NotFound();
             }
@@ -88,25 +79,24 @@ namespace EFTest.Controllers
             {
                 try
                 {
-                    await _studentRepository.Update(student);
+                    await _courseRepository.Update(course);
                     TempData["SuccessMessage"] = "Estudante atualizado com sucesso!";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Erro ao atualizar estudante {Id}", id);
                     ModelState.AddModelError("", "Erro ao atualizar o estudante.");
                 }
             }
 
-            return View(student);
+            return View(course);
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -9,7 +9,6 @@ namespace EFTest.Models
     {
         public int StudentId { get; set; }
 
-        // Property Navigations
         [ForeignKey(nameof(StudentId))]
         public Student? Student { get; set; }
 
@@ -18,5 +17,7 @@ namespace EFTest.Models
         [ForeignKey(nameof(CourseId))]
         public Course? Course { get; set; }
 
+        public DateTime SignDate { get; set; }
+        public DateTime? CancelDate { get; set; }
     }
 }
