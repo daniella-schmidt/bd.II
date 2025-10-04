@@ -1,0 +1,48 @@
+﻿@model EFTest.Models.Subject
+
+@{
+    ViewData["Title"] = "Nova Matéria";
+}
+
+<div class="container mt-3">
+    <h2>Nova Matéria</h2>
+
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Nome da Matéria</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CourseId" class="form-label">Curso</label>
+                    <select asp-for="CourseId" asp-items="@(ViewData["CourseId"] as SelectList)" class="form-select">
+                        <option value="">Selecione um curso</option>
+                    </select>
+                    <span asp-validation-for="CourseId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Workload" class="form-label">Carga Horária (horas)</label>
+                    <input asp-for="Workload" type="number" class="form-control" />
+                    <span asp-validation-for="Workload" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Descrição</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
+    </form>
+</div>

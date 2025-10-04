@@ -1,4 +1,4 @@
-﻿@model EFTest.Models.StudentsCourses
+﻿@model List<EFTest.Models.StudentsCourses>
 @{
     ViewData["Title"] = "Nova Matrícula";
 }
@@ -14,19 +14,25 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Create" method="post">
+                    <form asp-action="Create" method="post" id="matriculaForm">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
+                        <!-- Estudante -->
                         <div class="mb-3">
-                            <label asp-for="StudentId" class="form-label">
+                            <label class="form-label">
                                 <i class="fas fa-user me-1"></i>
                                 Estudante
                             </label>
-                            @if (ViewBag.StudentId != null)
+                            @{
+                                var studentList = ViewData["StudentId"] as SelectList;
+                            }
+
+                            @if (studentList != null && studentList.Any())
                             {
-                                <select asp-for="StudentId" asp-items="ViewBag.StudentId" class="form-select form-select-lg">
+                                <select name="studentId" asp-items="studentList" class="form-select form-select-lg" id="studentSelect" required>
                                     <option value="">Selecione um estudante</option>
                                 </select>
+                                <span class="text-danger small" id="studentError"></span>
                             }
                             else
                             {
@@ -34,18 +40,56 @@
                                     Nenhum estudante cadastrado. <a asp-controller="Home" asp-action="Create">Cadastrar estudante</a>
                                 </div>
                             }
-                            <span asp-validation-for="StudentId" class="text-danger small"></span>
                         </div>
 
+                        <!-- Cursos -->
                         <div class="mb-3">
-                            <label asp-for="CourseId" class="form-label">
+                            <label class="form-label">
                                 <i class="fas fa-book me-1"></i>
-                                Curso
+                                Cursos Disponíveis
                             </label>
-                            <select asp-for="CourseId" asp-items="ViewBag.CourseId" class="form-select form-select-lg">
-                                <option value="">Selecione um curso</option>
-                            </select>
-                            <span asp-validation-for="CourseId" class="text-danger small"></span>
+
+                            @{
+                                var coursesList = ViewData["CoursesList"] as List<EFTest.Models.Course>;
+                            }
+
+                            @if (coursesList != null && coursesList.Any())
+                            {
+                                <div class="border rounded p-3 bg-light">
+                                    <div class="mb-2">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" id="selectAll">
+                                            <i class="fas fa-check-square me-1"></i>Selecionar Todos
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="deselectAll">
+                                            <i class="fas fa-times-circle me-1"></i>Desmarcar Todos
+                                        </button>
+                                    </div>
+
+                                    <div style="max-height: 300px; overflow-y: auto;">
+                                        @foreach (var course in coursesList)
+                                        {
+                                            <div class="form-check">
+                                                <input class="form-check-input course-checkbox"
+                                                       type="checkbox"
+                                                       name="courseIds"
+                                                       value="@course.Id"
+                                                       id="course_@course.Id">
+                                                <label class="form-check-label" for="course_@course.Id">
+                                                    @course.Name
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <small class="text-muted">Selecione um ou mais cursos</small>
+                                <span class="text-danger small" id="coursesError"></span>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    Nenhum curso cadastrado. <a asp-controller="Course" asp-action="Create">Cadastrar curso</a>
+                                </div>
+                            }
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -53,7 +97,7 @@
                                 <i class="fas fa-arrow-left me-1"></i>
                                 Voltar
                             </a>
-                            <button type="submit" class="btn btn-success btn-lg">
+                            <button type="submit" class="btn btn-success btn-lg" id="submitBtn">
                                 <i class="fas fa-check me-1"></i>
                                 Matricular
                             </button>
@@ -72,14 +116,62 @@
 
     <script>
         $(document).ready(function() {
-            // Validação dos selects
-            $('select').on('change', function() {
-                if ($(this).val()) {
-                    $(this).addClass('is-valid').removeClass('is-invalid');
-                } else {
-                    $(this).addClass('is-invalid').removeClass('is-valid');
+            // Selecionar todos
+            $('#selectAll').click(function() {
+                $('.course-checkbox').prop('checked', true);
+                validateForm();
+            });
+
+            // Desmarcar todos
+            $('#deselectAll').click(function() {
+                $('.course-checkbox').prop('checked', false);
+                validateForm();
+            });
+
+            // Validação em tempo real
+            $('#studentSelect, .course-checkbox').on('change', function() {
+                validateForm();
+            });
+
+            // Validação no submit
+            $('#matriculaForm').on('submit', function(e) {
+                if (!validateForm()) {
+                    e.preventDefault();
+                    alert('Por favor, corrija os erros antes de enviar.');
                 }
             });
+
+            function validateForm() {
+                let isValid = true;
+                const studentId = $('#studentSelect').val();
+                const selectedCourses = $('.course-checkbox:checked').length;
+
+                // Validar estudante
+                if (!studentId) {
+                    $('#studentSelect').addClass('is-invalid').removeClass('is-valid');
+                    $('#studentError').text('Selecione um estudante.');
+                    isValid = false;
+                } else {
+                    $('#studentSelect').addClass('is-valid').removeClass('is-invalid');
+                    $('#studentError').text('');
+                }
+
+                // Validar cursos
+                if (selectedCourses === 0) {
+                    $('#coursesError').text('Selecione pelo menos um curso.');
+                    isValid = false;
+                } else {
+                    $('#coursesError').text('');
+                }
+
+                // Habilitar/desabilitar botão
+                $('#submitBtn').prop('disabled', !isValid);
+
+                return isValid;
+            }
+
+            // Validar inicialmente
+            validateForm();
         });
     </script>
 }

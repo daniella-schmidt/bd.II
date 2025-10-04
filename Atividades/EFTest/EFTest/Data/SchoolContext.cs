@@ -13,6 +13,7 @@ namespace EFTest.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<StudentsCourses> StudentsCourses { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

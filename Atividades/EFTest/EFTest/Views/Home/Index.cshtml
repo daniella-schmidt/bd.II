@@ -35,6 +35,7 @@
                     <th>Nome</th>
                     <th>Sobrenome</th>
                     <th>Data Matrícula</th>
+                    <th>Cursos Matriculados</th> <!-- Nova coluna -->
                     <th class="text-center">Ações</th>
                 </tr>
             </thead>
@@ -46,6 +47,17 @@
                         <td>@s.FirstMidName</td>
                         <td>@s.LastName</td>
                         <td>@s.EnrollmentDate.ToShortDateString()</td>
+                        <td>
+                            @if (s.StudentCourses != null && s.StudentCourses.Any(sc => sc.CancelDate == null))
+                            {
+                                var cursosAtivos = s.StudentCourses.Where(sc => sc.CancelDate == null).Select(sc => sc.Course?.Name);
+                                <span>@string.Join(", ", cursosAtivos)</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Nenhum curso ativo</span>
+                            }
+                        </td>
                         <td class="text-center">
                             <div class="btn-group" role="group">
                                 <a asp-controller="Home"

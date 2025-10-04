@@ -26,7 +26,10 @@ namespace EFTest.Repository
 
         public async Task<List<Student>> GetAll()
         {
-            var data = await _context.Students.ToListAsync();
+            var data = await _context.Students
+                .Include(s => s.StudentCourses!) // Inclui as matrículas
+                    .ThenInclude(sc => sc.Course) // Inclui os cursos das matrículas
+                .ToListAsync();
             return data;
         }
 

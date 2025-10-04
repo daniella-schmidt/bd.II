@@ -81,6 +81,39 @@ namespace EFTest.Migrations
                     b.ToTable("StudentsCourses");
                 });
 
+            modelBuilder.Entity("EFTest.Models.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Workload")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Subjects");
+                });
+
             modelBuilder.Entity("EFTest.Models.StudentsCourses", b =>
                 {
                     b.HasOne("EFTest.Models.Course", "Course")
@@ -100,9 +133,22 @@ namespace EFTest.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("EFTest.Models.Subject", b =>
+                {
+                    b.HasOne("EFTest.Models.Course", "Course")
+                        .WithMany("Subjects")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("EFTest.Models.Course", b =>
                 {
                     b.Navigation("StudentCourses");
+
+                    b.Navigation("Subjects");
                 });
 
             modelBuilder.Entity("EFTest.Models.Student", b =>
