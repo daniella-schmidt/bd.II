@@ -22,6 +22,32 @@ namespace EFFloristry.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EFFloristry.Models.Client", b =>
+                {
+                    b.Property<int>("ClientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ClientId");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("EFFloristry.Models.Invoice", b =>
                 {
                     b.Property<int>("Id")
@@ -31,10 +57,12 @@ namespace EFFloristry.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CustomerAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("InvoiceNumber")
                         .HasColumnType("int");
@@ -43,14 +71,15 @@ namespace EFFloristry.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SellerName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<float>("TotalValue")
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Invoice", (string)null);
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("EFFloristry.Models.ItemInvoice", b =>
@@ -82,7 +111,61 @@ namespace EFFloristry.Migrations
 
                     b.HasIndex("ItemInvoiceInvoiceId", "ItemInvoiceProductId");
 
-                    b.ToTable("Item_Invoice", (string)null);
+                    b.ToTable("ItemInvoices");
+                });
+
+            modelBuilder.Entity("EFFloristry.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("EFFloristry.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("EFFloristry.Models.Product", b =>
@@ -94,20 +177,22 @@ namespace EFFloristry.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int?>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("EFFloristry.Models.ItemInvoice", b =>
@@ -133,6 +218,41 @@ namespace EFFloristry.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("EFFloristry.Models.Order", b =>
+                {
+                    b.HasOne("EFFloristry.Models.Client", "Client")
+                        .WithMany("Orders")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("EFFloristry.Models.OrderItem", b =>
+                {
+                    b.HasOne("EFFloristry.Models.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EFFloristry.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("EFFloristry.Models.Client", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("EFFloristry.Models.Invoice", b =>
                 {
                     b.Navigation("Items");
@@ -141,6 +261,11 @@ namespace EFFloristry.Migrations
             modelBuilder.Entity("EFFloristry.Models.ItemInvoice", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("EFFloristry.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

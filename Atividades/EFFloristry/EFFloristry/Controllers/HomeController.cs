@@ -19,7 +19,7 @@ namespace EFFloristry.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _productRepository.GetAll());
+            return View(await _productRepository.GetAllWithOrders());
         }
 
         [HttpGet]

@@ -19,10 +19,22 @@ namespace EFFloristry.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task Update(Product product)
+        {
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task Delete(Product product)
         {
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Product?> GetById(int id)
+        {
+            return await _context.Products
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<Product>> GetAll()
@@ -30,12 +42,6 @@ namespace EFFloristry.Repository
             return await _context.Products
                 .OrderBy(p => p.ProductDescription)
                 .ToListAsync();
-        }
-
-        public async Task<Product?> GetById(int id)
-        {
-            return await _context.Products
-                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<Product>> GetByName(string name)
@@ -46,57 +52,14 @@ namespace EFFloristry.Repository
                 .ToListAsync();
         }
 
-        public async Task Update(Product product)
-        {
-            try
-            {
-                _context.Entry(product).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                // Verifica se o produto ainda existe
-                if (!await ProductExists(product.Id))
-                {
-                    throw new InvalidOperationException("Produto não encontrado para atualização.");
-                }
-                throw;
-            }
-        }
-
-        private async Task<bool> ProductExists(int id)
-        {
-            return await _context.Products.AnyAsync(p => p.Id == id);
-        }
-
-        // Métodos adicionais úteis
-        public async Task<List<Product>> GetByCategory(string category)
+        public async Task<List<Product>> GetAllWithOrders()
         {
             return await _context.Products
-                .Where(p => p.Category == category)
+                .Include(p => p.OrderItems!)
+                    .ThenInclude(oi => oi.Order)
+                    .ThenInclude(o => o!.Client)
                 .OrderBy(p => p.ProductDescription)
                 .ToListAsync();
-        }
-
-        public async Task<List<Product>> GetLowStockProducts(int threshold = 5)
-        {
-            return await _context.Products
-                .Where(p => p.Stock <= threshold)
-                .OrderBy(p => p.Stock)
-                .ToListAsync();
-        }
-
-        public async Task<decimal> GetTotalValue()
-        {
-            return await _context.Products
-                .SumAsync(p => p.Price * (p.Stock ?? 0));
-        }
-
-        public async Task<int> GetTotalStock()
-        {
-            return await _context.Products
-                .Where(p => p.Stock.HasValue)
-                .SumAsync(p => p.Stock!.Value);
         }
     }
 }

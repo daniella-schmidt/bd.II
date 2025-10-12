@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\eftest\\eftest\\models\\studentscourses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|solutionrelative:eftest\\models\\studentscourses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\eftest\\eftest\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|solutionrelative:eftest\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\eftest\\eftest\\views\\studentcourses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|solutionrelative:eftest\\views\\studentcourses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\eftest\\eftest\\controllers\\studentcoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|solutionrelative:eftest\\controllers\\studentcoursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\eftest\\eftest\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|solutionrelative:eftest\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{79FA97D2-2648-4DA2-ADB1-1104032620DD}|EFTest\\EFTest.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\atividades\\eftest\\eftest\\views\\studentcourses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 301,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,19 +46,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "StudentsCourses.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Models\\StudentsCourses.cs",
+              "RelativeDocumentMoniker": "EFTest\\Models\\StudentsCourses.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Models\\StudentsCourses.cs",
+              "RelativeToolTip": "EFTest\\Models\\StudentsCourses.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T18:50:47.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Models\\Student.cs",
               "RelativeDocumentMoniker": "EFTest\\Models\\Student.cs",
               "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Models\\Student.cs",
               "RelativeToolTip": "EFTest\\Models\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-27T00:40:32.512Z"
+              "WhenOpened": "2025-09-27T00:40:32.512Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Views\\StudentCourses\\Create.cshtml",
               "RelativeDocumentMoniker": "EFTest\\Views\\StudentCourses\\Create.cshtml",
@@ -67,7 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Views\\StudentCourses\\Index.cshtml",
               "RelativeDocumentMoniker": "EFTest\\Views\\StudentCourses\\Index.cshtml",
@@ -79,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "StudentCoursesController.cs",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\Atividades\\EFTest\\EFTest\\Controllers\\StudentCoursesController.cs",
               "RelativeDocumentMoniker": "EFTest\\Controllers\\StudentCoursesController.cs",

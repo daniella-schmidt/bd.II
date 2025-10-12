@@ -1,0 +1,250 @@
+﻿@model EFFloristry.Models.Order
+@{
+    ViewData["Title"] = "Editar Pedido";
+
+    var orderItemsList = Model.OrderItems?.ToList() ?? new List<OrderItem>();
+}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>
+                        Editar Pedido #@Model.Id
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Update" method="post" id="orderForm">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="ClientId" class="form-label">Cliente</label>
+                                    <select asp-for="ClientId" asp-items="ViewBag.Clients" class="form-select">
+                                        <option value="">Selecione um cliente</option>
+                                    </select>
+                                    <span asp-validation-for="ClientId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="OrderDate" class="form-label">Data do Pedido</label>
+                                    <input asp-for="OrderDate" type="date" class="form-control"
+                                           value="@Model.OrderDate.ToString("yyyy-MM-dd")" />
+                                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Descrição</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"
+                                      placeholder="Descrição do pedido...">@Model.Description</textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <h5 class="mt-4 mb-3">Itens do Pedido</h5>
+
+                        <div id="orderItems">
+                            <!-- Usar a lista convertida -->
+                            @if (orderItemsList.Any())
+                            {
+                                for (int i = 0; i < orderItemsList.Count; i++)
+                                {
+                                    <div class="order-item row mb-3">
+                                        <input type="hidden" name="OrderItems[@i].Id" value="@orderItemsList[i].Id" />
+                                        <input type="hidden" name="OrderItems[@i].OrderId" value="@Model.Id" />
+                                        <div class="col-md-4">
+                                            <label class="form-label">Produto</label>
+                                            <select name="OrderItems[@i].ProductId" class="form-select product-select">
+                                                <option value="">Selecione um produto</option>
+                                                @foreach (var product in ViewBag.Products)
+                                                {
+                                                    <option value="@product.Value"
+                                                            selected="@(product.Value == orderItemsList[i].ProductId.ToString())">
+                                                        @product.Text
+                                                    </option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Quantidade</label>
+                                            <input type="number" name="OrderItems[@i].Quantity"
+                                                   class="form-control quantity" min="1"
+                                                   value="@orderItemsList[i].Quantity" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Preço Unitário</label>
+                                            <input type="number" name="OrderItems[@i].UnitPrice"
+                                                   class="form-control unit-price" step="0.01" min="0.01"
+                                                   value="@orderItemsList[i].UnitPrice.ToString("F2")" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Total</label>
+                                            <input type="text" class="form-control item-total" readonly
+                                                   value="@((orderItemsList[i].Quantity * orderItemsList[i].UnitPrice).ToString("F2"))" />
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-end">
+                                            @if (i > 0)
+                                            {
+                                                <button type="button" class="btn btn-danger remove-item">×</button>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <!-- Item vazio se não houver itens -->
+                                <div class="order-item row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Produto</label>
+                                        <select name="OrderItems[0].ProductId" class="form-select product-select">
+                                            <option value="">Selecione um produto</option>
+                                            @foreach (var product in ViewBag.Products)
+                                            {
+                                                <option value="@product.Value">@product.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Quantidade</label>
+                                        <input type="number" name="OrderItems[0].Quantity"
+                                               class="form-control quantity" min="1" value="1" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Preço Unitário</label>
+                                        <input type="number" name="OrderItems[0].UnitPrice"
+                                               class="form-control unit-price" step="0.01" min="0.01" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Total</label>
+                                        <input type="text" class="form-control item-total" readonly />
+                                    </div>
+                                    <div class="col-md-1 d-flex align-items-end">
+                                        <!-- Primeiro item não tem botão de remover -->
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <button type="button" id="addItem" class="btn btn-secondary mb-3">
+                            <i class="fas fa-plus me-1"></i>Adicionar Item
+                        </button>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="d-flex gap-2">
+                                    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                                    <button type="submit" class="btn btn-warning text-dark">Atualizar Pedido</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <h4>Total: <span id="orderTotal" class="text-success">@Model.Total.ToString("C")</span></h4>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // CORREÇÃO: Inicializar itemIndex corretamente
+        let itemIndex = @(orderItemsList.Count > 0 ? orderItemsList.Count : 1);
+
+        // Adicionar novo item
+        $('#addItem').click(function() {
+            const newItem = $('.order-item:first').clone();
+
+            // Limpar valores
+            newItem.find('input[type="hidden"][name*="Id"]').remove();
+            newItem.find('select').val('');
+            newItem.find('.quantity').val(1);
+            newItem.find('.unit-price').val('');
+            newItem.find('.item-total').val('');
+
+            // Atualizar names
+            newItem.find('select').attr('name', `OrderItems[${itemIndex}].ProductId`);
+            newItem.find('.quantity').attr('name', `OrderItems[${itemIndex}].Quantity`);
+            newItem.find('.unit-price').attr('name', `OrderItems[${itemIndex}].UnitPrice`);
+
+            // Adicionar botão de remover
+            newItem.find('.remove-item').remove();
+            newItem.find('.col-md-1').html('<button type="button" class="btn btn-danger remove-item">×</button>');
+
+            $('#orderItems').append(newItem);
+            itemIndex++;
+        });
+
+        // Remover item
+        $(document).on('click', '.remove-item', function() {
+            if ($('.order-item').length > 1) {
+                $(this).closest('.order-item').remove();
+                calculateTotal();
+                reindexItems();
+            }
+        });
+
+        // Reindexar itens após remoção
+        function reindexItems() {
+            itemIndex = 0;
+            $('.order-item').each(function() {
+                $(this).find('select').attr('name', `OrderItems[${itemIndex}].ProductId`);
+                $(this).find('.quantity').attr('name', `OrderItems[${itemIndex}].Quantity`);
+                $(this).find('.unit-price').attr('name', `OrderItems[${itemIndex}].UnitPrice`);
+                itemIndex++;
+            });
+        }
+
+        // Buscar preço do produto
+        $(document).on('change', '.product-select', function() {
+            const productId = $(this).val();
+            const row = $(this).closest('.order-item');
+
+            if (productId) {
+                $.get('/Order/GetProductPrice?productId=' + productId, function(data) {
+                    row.find('.unit-price').val(data.price);
+                    calculateItemTotal(row);
+                });
+            }
+        });
+
+        // Calcular total do item
+        $(document).on('input', '.quantity, .unit-price', function() {
+            calculateItemTotal($(this).closest('.order-item'));
+        });
+
+        function calculateItemTotal(row) {
+            const quantity = parseFloat(row.find('.quantity').val()) || 0;
+            const unitPrice = parseFloat(row.find('.unit-price').val()) || 0;
+            const total = quantity * unitPrice;
+            row.find('.item-total').val(total.toFixed(2));
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            $('.order-item').each(function() {
+                const itemTotal = parseFloat($(this).find('.item-total').val()) || 0;
+                total += itemTotal;
+            });
+            $('#orderTotal').text('R$ ' + total.toFixed(2));
+        }
+
+        // Calcular total inicial
+        $(document).ready(function() {
+            calculateTotal();
+        });
+    </script>
+}

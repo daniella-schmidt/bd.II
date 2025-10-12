@@ -4,7 +4,6 @@
 }
 
 <div class="container mt-4">
-    <!-- Header com botão de adicionar -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h2 class="fw-bold text-success mb-1">
@@ -15,6 +14,7 @@
                 Total de <strong>@Model.Count</strong> produtos cadastrados
             </p>
         </div>
+        <!-- CORREÇÃO: Usar HomeController que gerencia produtos -->
         <a asp-controller="Home" asp-action="Create" class="btn btn-success btn-lg">
             <i class="fas fa-plus me-2"></i>
             Novo Produto
@@ -35,6 +35,7 @@
                                 <th scope="col" class="text-center">Preço (R$)</th>
                                 <th scope="col" class="text-center">Categoria</th>
                                 <th scope="col" class="text-center">Estoque</th>
+                                <th scope="col" class="text-center">Pedidos</th>
                                 <th scope="col" class="text-center">Ações</th>
                             </tr>
                         </thead>
@@ -47,6 +48,16 @@
                                         <div class="d-flex align-items-center">
                                             <i class="fas fa-leaf text-success me-2"></i>
                                             @p.ProductDescription
+                                            <!-- Ícone para expandir pedidos -->
+                                            @if (p.OrderItems != null && p.OrderItems.Any())
+                                            {
+                                                <button class="btn btn-sm btn-outline-info ms-2"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#orders-@p.Id"
+                                                        title="Ver pedidos">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </button>
+                                            }
                                         </div>
                                     </td>
                                     <td class="text-center fw-bold text-success">
@@ -84,6 +95,18 @@
                                         }
                                     </td>
                                     <td class="text-center">
+                                        @if (p.OrderItems != null && p.OrderItems.Any())
+                                        {
+                                            <span class="badge bg-info">
+                                                @p.OrderItems.Count pedido(s)
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Nenhum pedido</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group">
                                             <a asp-controller="Home"
                                                asp-action="Update"
@@ -108,6 +131,73 @@
                                         </div>
                                     </td>
                                 </tr>
+
+                                <!-- Linha expansível com detalhes dos pedidos (mantenha igual) -->
+                                @if (p.OrderItems != null && p.OrderItems.Any())
+                                {
+                                    <tr class="collapse" id="orders-@p.Id">
+                                        <td colspan="7" class="p-0">
+                                            <div class="p-3 bg-light">
+                                                <h6 class="fw-bold mb-3">
+                                                    <i class="fas fa-shopping-cart me-2"></i>
+                                                    Pedidos para este produto:
+                                                </h6>
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-bordered">
+                                                        <thead class="table-secondary">
+                                                            <tr>
+                                                                <th>Pedido #</th>
+                                                                <th>Cliente</th>
+                                                                <th>Data</th>
+                                                                <th class="text-center">Quantidade</th>
+                                                                <th class="text-center">Preço Unit.</th>
+                                                                <th class="text-center">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var orderItem in p.OrderItems.OrderByDescending(oi => oi.Order?.OrderDate))
+                                                            {
+                                                                <tr>
+                                                                    <td class="fw-bold">#@orderItem.OrderId</td>
+                                                                    <td>
+                                                                        <i class="fas fa-user me-1 text-primary"></i>
+                                                                        @orderItem.Order?.Client?.Name
+                                                                    </td>
+                                                                    <td>
+                                                                        @orderItem.Order?.OrderDate.ToString("dd/MM/yyyy")
+                                                                    </td>
+                                                                    <td class="text-center fw-bold">
+                                                                        @orderItem.Quantity
+                                                                    </td>
+                                                                    <td class="text-center text-success">
+                                                                        @orderItem.UnitPrice.ToString("C")
+                                                                    </td>
+                                                                    <td class="text-center fw-bold text-success">
+                                                                        @((orderItem.Quantity * orderItem.UnitPrice).ToString("C"))
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                        <tfoot class="table-secondary">
+                                                            <tr>
+                                                                <td colspan="3" class="fw-bold text-end">Totais:</td>
+                                                                <td class="text-center fw-bold">
+                                                                    @p.OrderItems.Sum(oi => oi.Quantity)
+                                                                </td>
+                                                                <td class="text-center fw-bold">
+                                                                    @p.OrderItems.Average(oi => oi.UnitPrice).ToString("C")
+                                                                </td>
+                                                                <td class="text-center fw-bold text-success">
+                                                                    @p.OrderItems.Sum(oi => oi.Quantity * oi.UnitPrice).ToString("C")
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
                             }
                         </tbody>
                     </table>
@@ -120,6 +210,7 @@
                     <i class="fas fa-seedling fa-3x text-muted mb-3"></i>
                     <h4 class="text-muted mb-3">Nenhum produto cadastrado</h4>
                     <p class="text-muted mb-4">Comece adicionando seu primeiro produto ao catálogo.</p>
+                    <!-- CORREÇÃO: Usar HomeController -->
                     <a asp-controller="Home" asp-action="Create" class="btn btn-success btn-lg">
                         <i class="fas fa-plus me-2"></i>
                         Cadastrar Primeiro Produto
@@ -133,7 +224,7 @@
     {
         <!-- Estatísticas rápidas -->
         <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card text-center bg-light">
                     <div class="card-body">
                         <i class="fas fa-chart-bar fa-2x text-primary mb-2"></i>
@@ -142,7 +233,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card text-center bg-light">
                     <div class="card-body">
                         <i class="fas fa-dollar-sign fa-2x text-success mb-2"></i>
@@ -151,7 +242,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card text-center bg-light">
                     <div class="card-body">
                         <i class="fas fa-boxes fa-2x text-warning mb-2"></i>
@@ -160,9 +251,55 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card text-center bg-light">
+                    <div class="card-body">
+                        <i class="fas fa-shopping-cart fa-2x text-info mb-2"></i>
+                        <h5>Total em Pedidos</h5>
+                        <h3 class="text-info">
+                            @{
+                                var totalPedidos = Model.Sum(p => p.OrderItems?.Sum(oi => oi.Quantity * oi.UnitPrice) ?? 0);
+                            }
+                            @totalPedidos.ToString("C")
+                        </h3>
+                    </div>
+                </div>
+            </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // CORREÇÃO: Impedir que o clique nos botões de ação expanda/contraia a linha
+            $('.btn-group').on('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // CORREÇÃO: Só expandir quando clicar em áreas específicas, não nos botões
+            $('tr[data-bs-toggle="collapse"]').on('click', function(e) {
+                // Não expandir se clicar nos botões de ação
+                if ($(e.target).closest('.btn-group').length > 0) {
+                    return;
+                }
+
+                // Não expandir se clicar em links ou botões
+                if ($(e.target).is('a') || $(e.target).is('button') || $(e.target).closest('a').length > 0 || $(e.target).closest('button').length > 0) {
+                    return;
+                }
+
+                $(this).toggleClass('table-active');
+            });
+
+            // CORREÇÃO: Adicionar indicador visual de que a linha é clicável
+            $('tr[data-bs-toggle="collapse"] td:not(:last-child)').css('cursor', 'pointer');
+
+            // Manter cursor normal apenas na coluna de ações
+            $('tr[data-bs-toggle="collapse"] td:last-child').css('cursor', 'default');
+        });
+    </script>
+}
 
 <style>
     .btn-group-sm .btn {
@@ -191,4 +328,23 @@
             transition: all 0.2s ease;
             box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
         }
+
+    .table-active {
+        background-color: rgba(0, 0, 0, 0.075) !important;
+    }
+
+    .collapse-row {
+        background-color: #f8f9fa;
+    }
+
+    .table-sm th, .table-sm td {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    /* CORREÇÃO: Garantir que os botões sejam clicáveis */
+    .btn-group .btn {
+        position: relative;
+        z-index: 10;
+    }
 </style>

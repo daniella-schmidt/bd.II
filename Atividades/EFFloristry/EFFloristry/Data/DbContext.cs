@@ -8,30 +8,29 @@ namespace EFFloristry.Data
         public FloristryContext(DbContextOptions<FloristryContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<ItemInvoice> ItemInvoices { get; set; }
-    
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Mapeamento de nomes de tabelas
-            modelBuilder.Entity<Product>().ToTable("Product");
-            modelBuilder.Entity<Invoice>().ToTable("Invoice");
-            modelBuilder.Entity<ItemInvoice>().ToTable("Item_Invoice");
+            // Configurações de relacionamento
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.OrderItems)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.OrderId);
 
-            modelBuilder.Entity<ItemInvoice>()
-           .HasKey(ii => new { ii.InvoiceId, ii.ProductId });
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.OrderItems)
+                .WithOne(oi => oi.Product)
+                .HasForeignKey(oi => oi.ProductId);
 
-                // Relacionamento com Invoice
-                modelBuilder.Entity<ItemInvoice>()
-                    .HasOne(ii => ii.Invoice)
-                    .WithMany(i => i.Items)
-                    .HasForeignKey(ii => ii.InvoiceId);
-
-                // Relacionamento com Product
-                modelBuilder.Entity<ItemInvoice>()
-                    .HasOne(ii => ii.Product)
-                    .WithMany()
-                    .HasForeignKey(ii => ii.ProductId);
+            modelBuilder.Entity<Client>()
+                .HasMany(c => c.Orders)
+                .WithOne(o => o.Client)
+                .HasForeignKey(o => o.ClientId);
         }
     }
 }

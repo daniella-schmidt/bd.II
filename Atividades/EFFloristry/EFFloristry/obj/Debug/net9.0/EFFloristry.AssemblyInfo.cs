@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EFFloristry")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2986e40a857c87000dc014e90230e2329c292920")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6870e2228950cb454cc95f9e5ddfe1f5dd358c82")]
 [assembly: System.Reflection.AssemblyProductAttribute("EFFloristry")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EFFloristry")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
