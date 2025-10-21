@@ -1,14 +1,38 @@
-﻿public class Adress
-{
-    public int Id { get; set; }
-    public string Street { get; set; } = string.Empty;
-    public string? Number { get; set; }
-    public string? Complement { get; set; }
-    public string City { get; set; } = string.Empty;
-    public string State { get; set; } = string.Empty;
-    public string Country { get; set; } = string.Empty;
-    public string Cep { get; set; } = string.Empty;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-    // Navegação de volta para o Client (se necessário)
-    public Client? Client { get; set; }
+namespace EFAereoNuvem.Models
+{
+    [Table("Adresses")]
+    public class Adress
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string Street { get; set; } = string.Empty;
+
+        [MaxLength(10)]
+        public string? Number { get; set; }
+
+        [MaxLength(50)]
+        public string? Complement { get; set; }
+
+        [Required]
+        [MaxLength(60)]
+        public string City { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(2)]
+        public string State { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(50)]
+        public string Country { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(9)]
+        public string Cep { get; set; } = string.Empty;
+    }
 }

@@ -28,6 +28,50 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Airplane/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlycGxhbmVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Airplane/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlycGxhbmVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Airplane/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlycGxhbmVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Client/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Client/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Client/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Flight/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Flight/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Flight/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Flight/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Flight/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxpZ2h0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

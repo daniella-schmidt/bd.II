@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EFAereoNuvem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9dd016bf939e28dc105bc7bc783595d465897b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e82444958814f00115e3a6c0786aef157fa3df3c")]
 [assembly: System.Reflection.AssemblyProductAttribute("EFAereoNuvem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EFAereoNuvem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

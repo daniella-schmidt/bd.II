@@ -1,9 +1,24 @@
-﻿namespace EFAereoNuvem.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EFAereoNuvem.Models;
+
+[Table("Airports")]
+public class Airport
 {
-    public class Airport
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public Adress Adress { get; set; } = null!;
-    }
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    [MaxLength(3)]
+    [Column("IATA", TypeName = "varchar(3)")]
+    public string IATA { get; set; } = null!;
+
+    [Required]
+    [Column("AirportsName")]
+    public string Name { get; set; } = null!;
+
+    public int AdressId { get; set; }
+
+    public Adress Adress { get; set; } = null!; // Propriedade de navegação 
 }

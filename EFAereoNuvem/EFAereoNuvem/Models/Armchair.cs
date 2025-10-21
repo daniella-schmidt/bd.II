@@ -1,16 +1,21 @@
 ﻿using EFAereoNuvem.Models.Enum;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EFAereoNuvem.Models
+namespace EFAereoNuvem.Models;
+
+[Table("Armchairs")]
+public class Armchair
 {
-    public class Armchair
-    {
-        public int Id { get; set; }
-        public string Code { get; set; } = string.Empty;
-        public Class Class { get; set; }
+    [Key]
+    public int Id { get; set; }
 
-        public bool Side { get; set; }
-        public bool IsAvaliable { get; set; }
-        // Conexoes de n-n com dados adicionais
-        public List<Reservation> Reservations { get; set; } = [];
-    }
+    [Required(ErrorMessage = "O codigo é obrigatório.")]
+    public string Code { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "A classe é obrigatória.")]
+    public Class Class { get; set; }
+    public SideType Side { get; set; }
+    public bool IsAvaliable { get; set; }
+    public List<Reservation> Reservations { get; set; } = [];
 }

@@ -1,4 +1,6 @@
-﻿using EFAereoNuvem.Models.Enum;
+﻿using System;
+using System.Collections.Generic;
+using EFAereoNuvem.Models.Enum;
 
 namespace EFAereoNuvem.Models
 {
@@ -14,8 +16,10 @@ namespace EFAereoNuvem.Models
         public DateTime Departure { get; set; }
         public DateTime RealArrival { get; set; }
         public DateTime RealDeparture { get; set; }
+        public bool ExistScale { get; set; }
         public float Duration { get; set; }
-        public List<Reservation> Reservations { get; set; } = [];
+        public List<Reservation> Reservations { get; set; } = new();
+        public List<Scale> Scales { get; set; } = new();
         public int AirplaneId { get; set; }
         public Airplane Airplane { get; set; } = null!;
     }

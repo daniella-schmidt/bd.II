@@ -1,11 +1,19 @@
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.exe
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Identity.Client.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\appsettings.json
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.staticwebassets.runtime.json
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.staticwebassets.endpoints.json
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.exe
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.deps.json
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.runtimeconfig.json
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\EFAereoNuvem.pdb
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Azure.Identity.dll
@@ -19,11 +27,7 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -34,7 +38,6 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Identity.Client.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -52,7 +55,6 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Composition.Hosting.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Composition.Runtime.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Composition.TypedParts.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Drawing.Common.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\System.Memory.Data.dll
@@ -126,10 +128,8 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
@@ -227,3 +227,4 @@ C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\obj
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\obj\Debug\net9.0\EFAereoNuvem.pdb
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\obj\Debug\net9.0\EFAereoNuvem.genruntimeconfig.cache
 C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\obj\Debug\net9.0\ref\EFAereoNuvem.dll
+C:\Users\ds643\OneDrive\Documentos\faculdade\bd.II\EFAereoNuvem\EFAereoNuvem\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
