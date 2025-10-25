@@ -45,19 +45,36 @@ namespace EFAereoNuvem.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Flight flight, List<Scale> scales)
         {
-            if (!ModelState.IsValid)
-            {
-                await LoadAirplanes();
-                return View(flight);
-            }
-
             try
             {
-                // Definir horários reais iguais aos previstos inicialmente
+                if (!ModelState.IsValid)
+                {
+                    await LoadAirplanes();
+                    return View(flight);
+                }
+
+                // Validação adicional
+                if (flight.AirplaneId == 0)
+                {
+                    ModelState.AddModelError("AirplaneId", "Selecione uma aeronave.");
+                    await LoadAirplanes();
+                    return View(flight);
+                }
+
+                // Verificar se código do voo já existe
+                var existingFlight = await _flightRepository.GetByCode(flight.CodeFlight);
+                if (existingFlight != null)
+                {
+                    ModelState.AddModelError("CodeFlight", "Código do voo já existe.");
+                    await LoadAirplanes();
+                    return View(flight);
+                }
+
+                // Definir horários reais
                 flight.RealDeparture = flight.Departure;
                 flight.RealArrival = flight.Arrival;
 
-                // Verificar se possui escalas
+                // Processar escalas
                 if (flight.ExistScale && scales != null && scales.Any())
                 {
                     flight.Scales = scales.Select((scale, index) => new Scale
@@ -76,6 +93,8 @@ namespace EFAereoNuvem.Controllers
             }
             catch (Exception ex)
             {
+                // Log do erro completo
+                Console.WriteLine($"Erro completo: {ex}");
                 await LoadAirplanes();
                 TempData["ErrorMessage"] = $"Erro ao cadastrar voo: {ex.Message}";
                 return View(flight);
