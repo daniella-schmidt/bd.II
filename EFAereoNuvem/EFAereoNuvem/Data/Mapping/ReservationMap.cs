@@ -15,9 +15,7 @@ public class ReservationMap : IEntityTypeConfiguration<Reservation>
                .ValueGeneratedOnAdd();
 
         builder.Property(r => r.CodeRersevation)
-            .IsRequired()               
-            .HasColumnType("uniqueidentifier") // tipo Guid no SQL Server
-            .HasDefaultValueSql("NEWID()");   // gera automaticamente no banco
+            .IsRequired();
 
         builder.Property(r => r.Price)
                .IsRequired()
@@ -38,10 +36,10 @@ public class ReservationMap : IEntityTypeConfiguration<Reservation>
                .HasForeignKey(r => r.FlightId)
                .OnDelete(DeleteBehavior.Cascade);
 
-        // Relacionamento 1:1 opcional com Armchair
-        builder.HasOne(r => r.Armchair)
-               .WithMany(a => a.Reservations)
-               .HasForeignKey(r => r.ArmchairId)
+        // Relacionamento 1:1 com Armchair
+        builder.HasOne(r => r.ReservedArmchair)
+               .WithOne(a => a.Reservation)
+               .HasForeignKey<Reservation>(r => r.ArmchairId)
                .IsRequired()
                .OnDelete(DeleteBehavior.Restrict); // não deletar reserva se cadeira for apagada
     }

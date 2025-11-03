@@ -24,11 +24,9 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Adress", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Cep")
                         .IsRequired()
@@ -77,11 +75,9 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Airplane", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int")
@@ -106,14 +102,12 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Airport", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AdressId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AdressId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IATA")
                         .IsRequired()
@@ -135,11 +129,12 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Armchair", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<Guid?>("AirplaneId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Class")
                         .HasColumnType("int");
@@ -156,37 +151,37 @@ namespace EFAereoNuvem.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AirplaneId");
+
                     b.ToTable("Armchairs");
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.Client", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateOnly>("BornDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("ClientStatusId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("ClientStatusId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
 
-                    b.Property<int>("CurrentAdressId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CurrentAdressId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("FutureAdressId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("FutureAdressId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -196,6 +191,9 @@ namespace EFAereoNuvem.Migrations
                     b.Property<string>("Phone")
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -208,16 +206,16 @@ namespace EFAereoNuvem.Migrations
 
                     b.HasIndex("FutureAdressId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.ClientStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("Discount")
                         .HasColumnType("real");
@@ -235,14 +233,12 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Flight", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AirplaneId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AirplaneId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Arrival")
                         .HasColumnType("datetime");
@@ -271,6 +267,9 @@ namespace EFAereoNuvem.Migrations
                     b.Property<bool>("ExistScale")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Origin")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -295,38 +294,36 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Reservation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArmchairId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ArmchairId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Class")
                         .HasColumnType("int");
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CodeRersevation")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                    b.Property<string>("CodeRersevation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateReservation")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("FlightId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("FlightId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArmchairId");
+                    b.HasIndex("ArmchairId")
+                        .IsUnique();
 
                     b.HasIndex("ClientId");
 
@@ -335,13 +332,38 @@ namespace EFAereoNuvem.Migrations
                     b.ToTable("Reservations", (string)null);
                 });
 
+            modelBuilder.Entity("EFAereoNuvem.Models.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("TypeRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            TypeRole = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            TypeRole = "Client"
+                        });
+                });
+
             modelBuilder.Entity("EFAereoNuvem.Models.Scale", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Arrival")
                         .HasColumnType("datetime2");
@@ -349,8 +371,8 @@ namespace EFAereoNuvem.Migrations
                     b.Property<DateTime>("Departure")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FlightId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("FlightId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -370,6 +392,47 @@ namespace EFAereoNuvem.Migrations
                     b.ToTable("Scale");
                 });
 
+            modelBuilder.Entity("EFAereoNuvem.Models.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.Property<Guid>("RolesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UserRoles", (string)null);
+                });
+
             modelBuilder.Entity("EFAereoNuvem.Models.Airport", b =>
                 {
                     b.HasOne("EFAereoNuvem.Models.Adress", "Adress")
@@ -379,6 +442,13 @@ namespace EFAereoNuvem.Migrations
                         .IsRequired();
 
                     b.Navigation("Adress");
+                });
+
+            modelBuilder.Entity("EFAereoNuvem.Models.Armchair", b =>
+                {
+                    b.HasOne("EFAereoNuvem.Models.Airplane", null)
+                        .WithMany("Armchairs")
+                        .HasForeignKey("AirplaneId");
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.Client", b =>
@@ -398,11 +468,17 @@ namespace EFAereoNuvem.Migrations
                         .HasForeignKey("FutureAdressId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("EFAereoNuvem.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("ClientStatus");
 
                     b.Navigation("CurrentAdress");
 
                     b.Navigation("FutureAdress");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.Flight", b =>
@@ -418,9 +494,9 @@ namespace EFAereoNuvem.Migrations
 
             modelBuilder.Entity("EFAereoNuvem.Models.Reservation", b =>
                 {
-                    b.HasOne("EFAereoNuvem.Models.Armchair", "Armchair")
-                        .WithMany("Reservations")
-                        .HasForeignKey("ArmchairId")
+                    b.HasOne("EFAereoNuvem.Models.Armchair", "ReservedArmchair")
+                        .WithOne("Reservation")
+                        .HasForeignKey("EFAereoNuvem.Models.Reservation", "ArmchairId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -436,11 +512,11 @@ namespace EFAereoNuvem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Armchair");
-
                     b.Navigation("Client");
 
                     b.Navigation("Flight");
+
+                    b.Navigation("ReservedArmchair");
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.Scale", b =>
@@ -454,14 +530,32 @@ namespace EFAereoNuvem.Migrations
                     b.Navigation("Flight");
                 });
 
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.HasOne("EFAereoNuvem.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EFAereoNuvem.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("EFAereoNuvem.Models.Airplane", b =>
                 {
+                    b.Navigation("Armchairs");
+
                     b.Navigation("Flights");
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.Armchair", b =>
                 {
-                    b.Navigation("Reservations");
+                    b.Navigation("Reservation")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EFAereoNuvem.Models.Client", b =>

@@ -8,7 +8,7 @@ namespace EFAereoNuvem.Models;
 public class Armchair
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     [Required(ErrorMessage = "O codigo é obrigatório.")]
     public string Code { get; set; } = string.Empty;
@@ -17,5 +17,5 @@ public class Armchair
     public Class Class { get; set; }
     public SideType Side { get; set; }
     public bool IsAvaliable { get; set; }
-    public List<Reservation> Reservations { get; set; } = [];
+    public Reservation Reservation { get; set; } = new();
 }

@@ -40,6 +40,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWlycGxhbmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/ClientDashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/ClientDashboard/MyReservations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGFzaGJvYXJkXE15UmVzZXJ2YXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/ClientDashboard/Reservation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGFzaGJvYXJkXFJlc2VydmF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/ClientDashboard/ReservationConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGFzaGJvYXJkXFJlc2VydmF0aW9uQ29uZmlybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/ClientDashboard/ReservationDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGFzaGJvYXJkXFJlc2VydmF0aW9uRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Client/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,6 +70,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Client/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/CreateAccount/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/CreateAccount/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlQWNjb3VudFxTdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Flight/Create.cshtml]
@@ -78,6 +106,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ds643/OneDrive/Documentos/faculdade/bd.II/EFAereoNuvem/EFAereoNuvem/Views/Shared/Error.cshtml]

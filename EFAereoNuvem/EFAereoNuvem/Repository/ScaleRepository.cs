@@ -26,7 +26,7 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             var scale = await _context.Scale.FindAsync(id);
             if (scale != null)
@@ -36,14 +36,14 @@ namespace EFAereoNuvem.Repository
             }
         }
 
-        public async Task DeleteByFlightId(int flightId)
+        public async Task DeleteByFlightId(Guid flightId)
         {
             var scales = await _context.Scale.Where(s => s.FlightId == flightId).ToListAsync();
             _context.Scale.RemoveRange(scales);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Scale> GetById(int id)
+        public async Task<Scale> GetById(Guid id)
         {
             return await _context.Scale
                 .Include(s => s.Flight)
@@ -51,7 +51,7 @@ namespace EFAereoNuvem.Repository
                 ?? throw new InvalidOperationException($"Escala com Id {id} não encontrada.");
         }
 
-        public async Task<List<Scale>> GetByFlightId(int flightId)
+        public async Task<List<Scale>> GetByFlightId(Guid flightId)
         {
             return await _context.Scale
                 .Where(s => s.FlightId == flightId)

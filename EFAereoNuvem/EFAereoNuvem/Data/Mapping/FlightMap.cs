@@ -40,11 +40,6 @@ public class FlightMap : IEntityTypeConfiguration<Flight>
             .HasColumnType("datetime")
             .IsRequired();
 
-        builder.Property(f => f.TypeFlight)
-            .HasColumnName("TypeFlight")
-            .HasColumnType("int") // ou varchar se for string
-            .IsRequired();
-
         builder.Property(f => f.Arrival)
             .HasColumnType("datetime")
             .IsRequired();

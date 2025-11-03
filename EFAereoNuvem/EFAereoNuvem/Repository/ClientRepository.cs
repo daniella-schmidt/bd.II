@@ -56,7 +56,7 @@ namespace EFAereoNuvem.Repository
                 .ToListAsync();
         }
 
-        public async Task<Client?> GetById(int id)
+        public async Task<Client?> GetById(Guid id)
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
@@ -98,7 +98,7 @@ namespace EFAereoNuvem.Repository
         }
 
         // ==================== READ - Consultas Específicas ====================
-        public async Task<List<Client>> GetByStatus(int statusId)
+        public async Task<List<Client>> GetByStatus(Guid statusId)
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
@@ -167,7 +167,7 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateCurrentAddress(int clientId, Adress newAddress)
+        public async Task UpdateCurrentAddress(Guid clientId, Adress newAddress)
         {
             var client = await _context.Clients.FindAsync(clientId);
 
@@ -183,7 +183,7 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateFutureAddress(int clientId, Adress? newAddress)
+        public async Task UpdateFutureAddress(Guid clientId, Adress? newAddress)
         {
             var client = await _context.Clients.FindAsync(clientId);
 
@@ -204,7 +204,7 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateClientStatus(int clientId, int statusId)
+        public async Task UpdateClientStatus(Guid clientId, Guid statusId)
         {
             var client = await _context.Clients.FindAsync(clientId);
 
@@ -227,7 +227,7 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteById(int id)
+        public async Task DeleteById(Guid id)
         {
             var client = await _context.Clients.FindAsync(id);
 

@@ -26,7 +26,7 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             var airplane = await _context.Airplanes.FindAsync(id);
             if (airplane != null)
@@ -36,7 +36,7 @@ namespace EFAereoNuvem.Repository
             }
         }
 
-        public async Task<Airplane> GetById(int id)
+        public async Task<Airplane> GetById(Guid id)
         {
             return await _context.Airplanes
                 .Include(a => a.Flights)

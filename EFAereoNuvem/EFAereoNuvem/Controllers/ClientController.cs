@@ -37,7 +37,7 @@ namespace EFAereoNuvem.Controllers
 
         // ==================== DETAILS ====================
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace EFAereoNuvem.Controllers
 
         // ==================== EDIT ====================
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace EFAereoNuvem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Client client)
+        public async Task<IActionResult> Edit(Guid id, Client client)
         {
             if (id != client.Id)
             {
@@ -174,7 +174,7 @@ namespace EFAereoNuvem.Controllers
         // ==================== DELETE ====================
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {

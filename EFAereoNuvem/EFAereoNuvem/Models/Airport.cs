@@ -7,7 +7,7 @@ namespace EFAereoNuvem.Models;
 public class Airport
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     [Required]
     [MaxLength(3)]
@@ -18,7 +18,7 @@ public class Airport
     [Column("AirportsName")]
     public string Name { get; set; } = null!;
 
-    public int AdressId { get; set; }
+    public Guid AdressId { get; set; }
 
     public Adress Adress { get; set; } = null!; // Propriedade de navegação 
 }

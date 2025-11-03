@@ -7,7 +7,7 @@ namespace EFAereoNuvem.Models;
 public class Airplane
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     [Required(ErrorMessage = "O prefixo é obrigatório.")]
     [StringLength(5, ErrorMessage = "O prefixo deve ter no máximo 5 caracteres.")]
@@ -22,6 +22,8 @@ public class Airplane
     [Required(ErrorMessage = "A capacidade é obrigatória.")]
     [Column("Capacity")]
     public int Capacity { get; set; }
+
+    public List<Armchair> Armchairs { get; set; } = [];
 
     public List<Flight> Flights { get; set; } = [];
 }

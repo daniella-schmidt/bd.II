@@ -45,7 +45,7 @@ namespace EFAereoNuvem.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             var airplane = await _airplaneRepository.GetById(id);
             if (airplane == null)
@@ -57,7 +57,7 @@ namespace EFAereoNuvem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Airplane airplane)
+        public async Task<IActionResult> Edit(Guid id, Airplane airplane)
         {
             if (id != airplane.Id)
             {
@@ -82,7 +82,7 @@ namespace EFAereoNuvem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {

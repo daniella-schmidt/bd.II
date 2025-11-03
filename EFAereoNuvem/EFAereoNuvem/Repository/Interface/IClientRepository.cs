@@ -9,13 +9,13 @@ namespace EFAereoNuvem.Repository.Interface
 
         // READ - Consultas básicas
         Task<List<Client>> GetAll();
-        Task<Client?> GetById(int id);
+        Task<Client?> GetById(Guid id);
         Task<Client?> GetByCpf(string cpf);
         Task<Client?> GetByEmail(string email);
         Task<List<Client>> GetByName(string name);
 
         // READ - Consultas específicas
-        Task<List<Client>> GetByStatus(int statusId);
+        Task<List<Client>> GetByStatus(Guid statusId);
         Task<List<Client>> GetClientsWithReservations();
         Task<List<Client>> GetByCity(string city);
         Task<List<Client>> GetByState(string state);
@@ -27,13 +27,13 @@ namespace EFAereoNuvem.Repository.Interface
 
         // UPDATE
         Task Update(Client client);
-        Task UpdateCurrentAddress(int clientId, Adress newAddress);
-        Task UpdateFutureAddress(int clientId, Adress? newAddress);
-        Task UpdateClientStatus(int clientId, int statusId);
+        Task UpdateCurrentAddress(Guid clientId, Adress newAddress);
+        Task UpdateFutureAddress(Guid clientId, Adress? newAddress);
+        Task UpdateClientStatus(Guid clientId, Guid statusId);
 
         // DELETE
         Task Delete(Client client);
-        Task DeleteById(int id);
+        Task DeleteById(Guid id);
 
         // UTILITY
         Task<int> Count();

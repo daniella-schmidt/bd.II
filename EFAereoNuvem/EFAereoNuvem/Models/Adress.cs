@@ -7,7 +7,7 @@ namespace EFAereoNuvem.Models
     public class Adress
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
         [MaxLength(100)]

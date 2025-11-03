@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "ContainingType": "EFAereoNuvem.Controllers.AccountController",
+    "Method": "Login",
+    "RelativePath": "v1/accounts/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EFAereoNuvem.ViewModel.LoginViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EFAereoNuvem.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "v1/accounts/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RegisterViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

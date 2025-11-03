@@ -7,7 +7,7 @@ namespace EFAereoNuvem.Models;
 
 public class Client
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     public string Cpf { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string? Email { get; set; }
@@ -16,11 +16,13 @@ public class Client
     public ClientStatus? ClientStatus { get; set; }
 
     // Endereço atual (obrigatório)
-    public int CurrentAdressId { get; set; } // FK
+    public Guid CurrentAdressId { get; set; } // FK
     public Adress CurrentAdress { get; set; } = null!; // Propriedade de navegação 
 
     // Endereço alternativo (opcional)
-    public int? FutureAdressId { get; set; } 
+    public Guid? FutureAdressId { get; set; } 
     public Adress? FutureAdress { get; set; }
     public ICollection<Reservation> Reservations { get; set; } = [];
+
+    public User? User { get; set; }
 }

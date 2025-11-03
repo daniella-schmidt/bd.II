@@ -7,7 +7,7 @@ namespace EFAereoNuvem.Models
     public class Scale
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
         [MaxLength(50)]
@@ -25,7 +25,7 @@ namespace EFAereoNuvem.Models
         [Required]
         public DateTime RealDeparture { get; set; }
 
-        public int FlightId { get; set; }
+        public Guid FlightId { get; set; }
         public Flight Flight { get; set; } = null!;
     }
 }
