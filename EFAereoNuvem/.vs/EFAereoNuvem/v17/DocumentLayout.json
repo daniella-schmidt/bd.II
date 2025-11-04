@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{09229246-CDBC-4E91-9A3B-256694F7EF95}|EFAereoNuvem\\EFAereoNuvem.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\efaereonuvem\\efaereonuvem\\repository\\airplanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09229246-CDBC-4E91-9A3B-256694F7EF95}|EFAereoNuvem\\EFAereoNuvem.csproj|solutionrelative:efaereonuvem\\repository\\airplanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09229246-CDBC-4E91-9A3B-256694F7EF95}|EFAereoNuvem\\EFAereoNuvem.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\efaereonuvem\\efaereonuvem\\repository\\interface\\iairplanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09229246-CDBC-4E91-9A3B-256694F7EF95}|EFAereoNuvem\\EFAereoNuvem.csproj|solutionrelative:efaereonuvem\\repository\\interface\\iairplanerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{09229246-CDBC-4E91-9A3B-256694F7EF95}|EFAereoNuvem\\EFAereoNuvem.csproj|c:\\users\\ds643\\onedrive\\documentos\\faculdade\\bd.ii\\efaereonuvem\\efaereonuvem\\controllers\\clientdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{09229246-CDBC-4E91-9A3B-256694F7EF95}|EFAereoNuvem\\EFAereoNuvem.csproj|solutionrelative:efaereonuvem\\controllers\\clientdashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -59,19 +67,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AirplaneRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Repository\\AirplaneRepository.cs",
+              "RelativeDocumentMoniker": "EFAereoNuvem\\Repository\\AirplaneRepository.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Repository\\AirplaneRepository.cs",
+              "RelativeToolTip": "EFAereoNuvem\\Repository\\AirplaneRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T00:54:53.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IAirplaneRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Repository\\Interface\\IAirplaneRepository.cs",
+              "RelativeDocumentMoniker": "EFAereoNuvem\\Repository\\Interface\\IAirplaneRepository.cs",
+              "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Repository\\Interface\\IAirplaneRepository.cs",
+              "RelativeToolTip": "EFAereoNuvem\\Repository\\Interface\\IAirplaneRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T00:50:46.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ClientDashboardController.cs",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Controllers\\ClientDashboardController.cs",
               "RelativeDocumentMoniker": "EFAereoNuvem\\Controllers\\ClientDashboardController.cs",
               "ToolTip": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Controllers\\ClientDashboardController.cs",
               "RelativeToolTip": "EFAereoNuvem\\Controllers\\ClientDashboardController.cs",
-              "ViewState": "AgIAAJUAAAAAAAAAAAAiwLwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAYwKgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T02:12:57.724Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Views\\ClientDashboard\\Index.cshtml",
               "RelativeDocumentMoniker": "EFAereoNuvem\\Views\\ClientDashboard\\Index.cshtml",
@@ -79,12 +113,11 @@
               "RelativeToolTip": "EFAereoNuvem\\Views\\ClientDashboard\\Index.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-03T01:57:59.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:57:59.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ReservationViewModel.cs",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\ViewModel\\ReservationViewModel.cs",
               "RelativeDocumentMoniker": "EFAereoNuvem\\ViewModel\\ReservationViewModel.cs",
@@ -92,12 +125,11 @@
               "RelativeToolTip": "EFAereoNuvem\\ViewModel\\ReservationViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T01:55:39.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:55:39.841Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "ReservationConfirmation.cshtml",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Views\\ClientDashboard\\ReservationConfirmation.cshtml",
               "RelativeDocumentMoniker": "EFAereoNuvem\\Views\\ClientDashboard\\ReservationConfirmation.cshtml",
@@ -105,12 +137,11 @@
               "RelativeToolTip": "EFAereoNuvem\\Views\\ClientDashboard\\ReservationConfirmation.cshtml",
               "ViewState": "AgIAABUAAAAAAAAAAAAAABgAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-03T01:52:31.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:52:31.481Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Reservation.cshtml",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Views\\ClientDashboard\\Reservation.cshtml",
               "RelativeDocumentMoniker": "EFAereoNuvem\\Views\\ClientDashboard\\Reservation.cshtml",
@@ -118,12 +149,11 @@
               "RelativeToolTip": "EFAereoNuvem\\Views\\ClientDashboard\\Reservation.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAAAAABYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-03T01:52:23.517Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:52:23.517Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ReservationDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Views\\ClientDashboard\\ReservationDetails.cshtml",
               "RelativeDocumentMoniker": "EFAereoNuvem\\Views\\ClientDashboard\\ReservationDetails.cshtml",
@@ -131,12 +161,11 @@
               "RelativeToolTip": "EFAereoNuvem\\Views\\ClientDashboard\\ReservationDetails.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-03T01:49:19.846Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:49:19.846Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\Program.cs",
               "RelativeDocumentMoniker": "EFAereoNuvem\\Program.cs",
@@ -144,12 +173,11 @@
               "RelativeToolTip": "EFAereoNuvem\\Program.cs",
               "ViewState": "AgIAAE0AAAAAAAAAAAAtwFwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T01:48:54.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:48:54.306Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ConstantsMessage.cs",
               "DocumentMoniker": "C:\\Users\\ds643\\OneDrive\\Documentos\\faculdade\\bd.II\\EFAereoNuvem\\EFAereoNuvem\\ViewModel\\ResponseViewModel\\ConstantsMessage.cs",
               "RelativeDocumentMoniker": "EFAereoNuvem\\ViewModel\\ResponseViewModel\\ConstantsMessage.cs",
@@ -157,8 +185,7 @@
               "RelativeToolTip": "EFAereoNuvem\\ViewModel\\ResponseViewModel\\ConstantsMessage.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAqwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T01:46:51.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:46:51.887Z"
             }
           ]
         }

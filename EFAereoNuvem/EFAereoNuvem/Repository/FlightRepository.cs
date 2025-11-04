@@ -10,15 +10,6 @@ public class FlightRepository(AppDBContext context) : IFlightRepository
 
     public async Task CreateAsync(Flight flight)
     {
-        if (flight.Scales != null && flight.Scales.Any())
-        {
-            foreach (var scale in flight.Scales)
-            {
-                scale.Id = Guid.NewGuid();
-                scale.FlightId = flight.Id;
-            }
-        }
-
         await _context.Flights.AddAsync(flight);
         await _context.SaveChangesAsync();
     }
@@ -45,11 +36,13 @@ public class FlightRepository(AppDBContext context) : IFlightRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<Flight>> GetAllAsync()
+    public async Task<IEnumerable<Flight>> GetAllAsync(int pageNumber, int pageSize)
     {
         return await _context.Flights
             .OrderBy(f => f.Departure)
             .AsNoTracking()
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
     }
 

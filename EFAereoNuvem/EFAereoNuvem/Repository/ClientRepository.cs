@@ -1,5 +1,6 @@
 ﻿using EFAereoNuvem.Data;
 using EFAereoNuvem.Models;
+using EFAereoNuvem.Models.Enum;
 using EFAereoNuvem.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,14 +46,16 @@ namespace EFAereoNuvem.Repository
         }
 
         // ==================== READ - Consultas Básicas ====================
-        public async Task<List<Client>> GetAll()
+        public async Task<List<Client>> GetAll(int pageNumber, int pageSize)
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
                 .Include(c => c.FutureAdress)
-                .Include(c => c.ClientStatus)
                 .Include(c => c.Reservations)
                 .AsNoTracking()
+                .OrderBy(c => c.Name) 
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
         }
 
@@ -61,7 +64,6 @@ namespace EFAereoNuvem.Repository
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
                 .Include(c => c.FutureAdress)
-                .Include(c => c.ClientStatus)
                 .Include(c => c.Reservations)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.Id == id);
@@ -72,7 +74,6 @@ namespace EFAereoNuvem.Repository
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
                 .Include(c => c.FutureAdress)
-                .Include(c => c.ClientStatus)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.Cpf == cpf);
         }
@@ -82,7 +83,6 @@ namespace EFAereoNuvem.Repository
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
                 .Include(c => c.FutureAdress)
-                .Include(c => c.ClientStatus)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.Email == email);
         }
@@ -91,28 +91,16 @@ namespace EFAereoNuvem.Repository
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
                 .Where(c => c.Name.Contains(name))
                 .AsNoTracking()
                 .ToListAsync();
         }
 
         // ==================== READ - Consultas Específicas ====================
-        public async Task<List<Client>> GetByStatus(Guid statusId)
-        {
-            return await _context.Clients
-                .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
-                .Where(c => c.ClientStatus != null && c.ClientStatus.Id == statusId)
-                .AsNoTracking()
-                .ToListAsync();
-        }
-
         public async Task<List<Client>> GetClientsWithReservations()
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
                 .Include(c => c.Reservations)
                 .Where(c => c.Reservations.Any())
                 .AsNoTracking()
@@ -123,7 +111,6 @@ namespace EFAereoNuvem.Repository
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
                 .Where(c => c.CurrentAdress.City.Contains(city))
                 .AsNoTracking()
                 .ToListAsync();
@@ -133,7 +120,6 @@ namespace EFAereoNuvem.Repository
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
                 .Where(c => c.CurrentAdress.State == state)
                 .AsNoTracking()
                 .ToListAsync();
@@ -143,8 +129,24 @@ namespace EFAereoNuvem.Repository
         {
             return await _context.Clients
                 .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
                 .Where(c => c.BornDate.Month == month)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+        public async Task<List<Client>> GetByStatus(Status status)
+        {
+            return await _context.Clients
+                .Include(c => c.CurrentAdress)
+                .Where(c => c.Status == status)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<Client>> GetByPriority(bool priority)
+        {
+            return await _context.Clients
+                .Include(c => c.CurrentAdress)
+                .Where(c => c.Priority == priority)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -169,10 +171,7 @@ namespace EFAereoNuvem.Repository
 
         public async Task UpdateCurrentAddress(Guid clientId, Adress newAddress)
         {
-            var client = await _context.Clients.FindAsync(clientId);
-
-            if (client == null)
-                throw new InvalidOperationException($"Cliente com Id {clientId} não encontrado.");
+            var client = await _context.Clients.FindAsync(clientId) ?? throw new InvalidOperationException($"Cliente não encontrado.");
 
             // Adiciona o novo endereço
             await _context.Adresses.AddAsync(newAddress);
@@ -185,11 +184,7 @@ namespace EFAereoNuvem.Repository
 
         public async Task UpdateFutureAddress(Guid clientId, Adress? newAddress)
         {
-            var client = await _context.Clients.FindAsync(clientId);
-
-            if (client == null)
-                throw new InvalidOperationException($"Cliente com Id {clientId} não encontrado.");
-
+            var client = await _context.Clients.FindAsync(clientId) ?? throw new InvalidOperationException($"Cliente não encontrado.");
             if (newAddress != null)
             {
                 await _context.Adresses.AddAsync(newAddress);
@@ -204,56 +199,35 @@ namespace EFAereoNuvem.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateClientStatus(Guid clientId, Guid statusId)
+        public async Task UpdateClientStatus(Guid clientId, Status status)
         {
-            var client = await _context.Clients.FindAsync(clientId);
+            var client = await _context.Clients.FindAsync(clientId) ?? throw new InvalidOperationException($"Cliente não encontrado.");
 
-            if (client == null)
-                throw new InvalidOperationException($"Cliente com Id {clientId} não encontrado.");
-
-            var status = await _context.ClientStatus.FindAsync(statusId);
-
-            if (status == null)
-                throw new InvalidOperationException($"Status com Id {statusId} não encontrado.");
-
-            client.ClientStatus = status;
-            await _context.SaveChangesAsync();
+            if (client != null)
+            {
+                client.Status = status; 
+                await _context.SaveChangesAsync();
+            }
         }
+
 
         // ==================== DELETE ====================
-        public async Task Delete(Client client)
-        {
-            _context.Clients.Remove(client);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task DeleteById(Guid id)
         {
             var client = await _context.Clients.FindAsync(id);
 
-            if (client == null)
-                throw new InvalidOperationException($"Cliente com Id {id} não encontrado.");
-
-            _context.Clients.Remove(client);
-            await _context.SaveChangesAsync();
+            if (client != null)
+            {
+                _context.Clients.Remove(client);
+                await _context.SaveChangesAsync();
+            }
         }
+
 
         // ==================== UTILITY ====================
         public async Task<int> Count()
         {
             return await _context.Clients.CountAsync();
-        }
-
-        public async Task<List<Client>> GetPaginated(int pageNumber, int pageSize)
-        {
-            return await _context.Clients
-                .Include(c => c.CurrentAdress)
-                .Include(c => c.ClientStatus)
-                .OrderBy(c => c.Name)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .AsNoTracking()
-                .ToListAsync();
         }
     }
 }

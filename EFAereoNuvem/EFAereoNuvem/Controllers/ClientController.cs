@@ -1,274 +1,392 @@
 ﻿using EFAereoNuvem.Models;
+using EFAereoNuvem.Models.Enum;
 using EFAereoNuvem.Repository.Interface;
+using EFAereoNuvem.ViewModel;
+using EFAereoNuvem.ViewModel.ResponseViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace EFAereoNuvem.Controllers
+namespace EFAereoNuvem.Controllers;
+
+public class ClientController : Controller
 {
-    public class ClientController : Controller
+    private readonly IClientRepository _clientRepository;
+
+    public ClientController(IClientRepository clientRepository)
     {
-        private readonly IClientRepository _clientRepository;
+        _clientRepository = clientRepository;
+    }
 
-        public ClientController(IClientRepository clientRepository)
+    // ==================== INDEX ====================
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Index(int page = 1, int pageSize = 25)
+    {
+        try
         {
-            _clientRepository = clientRepository;
+            var clients = await _clientRepository.GetAll(page, pageSize);
+            var totalClients = await _clientRepository.Count();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(totalClients / (double)pageSize);
+            ViewBag.TotalClients = totalClients;
+
+            return View(clients);
         }
-
-        // ==================== INDEX ====================
-        [HttpGet]
-        public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
+        catch 
         {
-            try
-            {
-                var clients = await _clientRepository.GetPaginated(page, pageSize);
-                var totalClients = await _clientRepository.Count();
-
-                ViewBag.CurrentPage = page;
-                ViewBag.TotalPages = (int)Math.Ceiling(totalClients / (double)pageSize);
-                ViewBag.TotalClients = totalClients;
-
-                return View(clients);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao carregar clientes: {ex.Message}";
-                return View(new List<Client>());
-            }
+            var response = new ResponseViewModel<List<Client?>>([ConstantsMessage.ERRO_SERVIDOR]);
+            TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
+            return View(new List<Client>());
         }
+    }
 
-        // ==================== DETAILS ====================
-        [HttpGet]
-        public async Task<IActionResult> Details(Guid id)
+    // ==================== DETAILS ====================
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Details(Guid id)
+    {
+        try
         {
-            try
+            var client = await _clientRepository.GetById(id);
+
+            if (client == null)
             {
-                var client = await _clientRepository.GetById(id);
-
-                if (client == null)
-                {
-                    TempData["ErrorMessage"] = "Cliente não encontrado.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                return View(client);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao carregar cliente: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        // ==================== CREATE ====================
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Client client)
-        {
-            try
-            {
-                // Validação de CPF único
-                if (await _clientRepository.CpfExists(client.Cpf))
-                {
-                    ModelState.AddModelError("Cpf", "CPF já cadastrado no sistema.");
-                    return View(client);
-                }
-
-                // Validação de Email único (se fornecido)
-                if (!string.IsNullOrEmpty(client.Email) && await _clientRepository.EmailExists(client.Email))
-                {
-                    ModelState.AddModelError("Email", "Email já cadastrado no sistema.");
-                    return View(client);
-                }
-
-                if (ModelState.IsValid)
-                {
-                    await _clientRepository.Create(client);
-                    TempData["SuccessMessage"] = "Cliente cadastrado com sucesso!";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                return View(client);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao cadastrar cliente: {ex.Message}";
-                return View(client);
-            }
-        }
-
-        // ==================== EDIT ====================
-        [HttpGet]
-        public async Task<IActionResult> Edit(Guid id)
-        {
-            try
-            {
-                var client = await _clientRepository.GetById(id);
-
-                if (client == null)
-                {
-                    TempData["ErrorMessage"] = "Cliente não encontrado.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                return View(client);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao carregar cliente: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Client client)
-        {
-            if (id != client.Id)
-            {
-                TempData["ErrorMessage"] = "ID inválido.";
+                var response = new ResponseViewModel<Client?>(ConstantsMessage.CLIENTE_NAO_ENCONTRADO);
+                TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
                 return RedirectToAction(nameof(Index));
             }
 
-            try
+            return View(client);
+        }
+        catch 
+        {
+            var response = new ResponseViewModel<Flight?>(ConstantsMessage.ERRO_SERVIDOR);
+            TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    // ==================== CREATE ====================
+    [HttpGet]
+    [Authorize(Roles = "Admin,Client")]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin,Client")]
+    public async Task<IActionResult> Create(Client client)
+    {
+        try
+        {
+            // Validação de CPF único
+            if (await _clientRepository.CpfExists(client.Cpf))
             {
-                // Verifica se o CPF já existe (exceto para o próprio cliente)
-                var existingClient = await _clientRepository.GetByCpf(client.Cpf);
-                if (existingClient != null && existingClient.Id != id)
+                ModelState.AddModelError("Cpf", "CPF já cadastrado no sistema.");
+                return View(client);
+            }
+
+            // Validação de Email único (se fornecido)
+            if (!string.IsNullOrEmpty(client.Email) && await _clientRepository.EmailExists(client.Email))
+            {
+                ModelState.AddModelError("Email", "Email já cadastrado no sistema.");
+                return View(client);
+            }
+
+            if (ModelState.IsValid)
+            {
+                await _clientRepository.Create(client);
+                TempData["SuccessMessage"] = "Cliente cadastrado com sucesso!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(client);
+        }
+        catch 
+        {
+            var response = new ResponseViewModel<Client>(client, ConstantsMessage.ERRO_CADASTRO_CLIENTE);
+
+            TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
+            return View(client);
+        }
+    }
+
+    // ==================== EDIT ====================
+    [HttpGet]
+    [Authorize(Roles = "Admin,Client")]
+    public async Task<IActionResult> Edit(Guid id)
+    {
+        try
+        {
+            var client = await _clientRepository.GetById(id);
+
+            if (client == null)
+            {
+                var response = new ResponseViewModel<Client?>(ConstantsMessage.CLIENTE_NAO_ENCONTRADO);
+
+                TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(client);
+        }
+        catch 
+        {
+            var response = new ResponseViewModel<Client?>(ConstantsMessage.ERRO_SERVIDOR);
+
+            TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Client")]
+    public async Task<IActionResult> Edit(Guid id, Client client)
+    {
+        if (id != client.Id)
+        {
+            var response = new ResponseViewModel<Client>(ConstantsMessage.ID_INVALIDO);
+            TempData["ErrorMessage"] = response.Messages.FirstOrDefault()?.Message;
+            return RedirectToAction(nameof(Index));
+        }
+
+        try
+        {
+            // Verifica se o CPF já existe (exceto para o próprio cliente)
+            var existingClient = await _clientRepository.GetByCpf(client.Cpf);
+            if (existingClient != null && existingClient.Id != id)
+            {
+                ModelState.AddModelError("Cpf", "CPF já cadastrado para outro cliente.");
+                return View(client);
+            }
+
+            // Verifica email único (se fornecido)
+            if (!string.IsNullOrEmpty(client.Email))
+            {
+                var clientWithEmail = await _clientRepository.GetByEmail(client.Email);
+                if (clientWithEmail != null && clientWithEmail.Id != id)
                 {
-                    ModelState.AddModelError("Cpf", "CPF já cadastrado para outro cliente.");
+                    ModelState.AddModelError("Email", "Email já cadastrado para outro cliente.");
                     return View(client);
                 }
+            }
 
-                // Verifica email único (se fornecido)
-                if (!string.IsNullOrEmpty(client.Email))
-                {
-                    var clientWithEmail = await _clientRepository.GetByEmail(client.Email);
-                    if (clientWithEmail != null && clientWithEmail.Id != id)
+            if (ModelState.IsValid)
+            {
+                await _clientRepository.Update(client);
+                TempData["SuccessMessage"] = new ResponseViewModel<Client>(ConstantsMessage.CLIENTE_ATUALIZADO_COM_SUCESSO);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(client);
+        }
+        catch 
+        {
+            TempData["ErrorMessage"] = new ResponseViewModel<Client>(ConstantsMessage.ERRO_AO_ATUALIZAR_CLIENTE);
+            return View(client);
+        }
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> UpdateClientStatus(Guid clientId, Status status)
+    {
+        try
+        {
+            await _clientRepository.UpdateClientStatus(clientId, status);
+            return Ok(new { message = "Status do cliente atualizado com sucesso." });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+        }
+    }
+
+
+    // ==================== DELETE ====================
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Client")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            var client = await _clientRepository.GetById(id);
+            if (client == null)
+            {
+                TempData["ErrorMessage"] = new ResponseViewModel<Client>(ConstantsMessage.CLIENTE_NAO_ENCONTRADO);
+                return RedirectToAction(nameof(Index));
+            }
+
+            await _clientRepository.DeleteById(id);
+            TempData["SuccessMessage"] = new ResponseViewModel<Client>(ConstantsMessage.CLIENTE_EXCLUIDO_COM_SUCESSO);
+            return RedirectToAction(nameof(Index));
+        }
+        catch 
+        {
+            TempData["ErrorMessage"] = new ResponseViewModel<Client>(ConstantsMessage.ERRO_AO_ATUALIZAR_CLIENTE);
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    // ==================== SEARCH ====================
+    [HttpGet]
+    public async Task<IActionResult> Search(string searchType, string searchValue)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                TempData["ErrorMessage"] = "Por favor, informe um valor para busca.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            List<Client> clients = new();
+            switch (searchType)
+            {
+                case "cpf":
+                case "email":
+                    var client = searchType == "cpf"
+                        ? await _clientRepository.GetByCpf(searchValue)
+                        : await _clientRepository.GetByEmail(searchValue);
+
+                    if (client == null)
                     {
-                        ModelState.AddModelError("Email", "Email já cadastrado para outro cliente.");
-                        return View(client);
+                        TempData["ErrorMessage"] = $"Nenhum cliente encontrado com este {(searchType == "cpf" ? "CPF" : "e-mail")}.";
+                        return RedirectToAction(nameof(Index));
                     }
-                }
 
-                if (ModelState.IsValid)
-                {
-                    await _clientRepository.Update(client);
-                    TempData["SuccessMessage"] = "Cliente atualizado com sucesso!";
-                    return RedirectToAction(nameof(Index));
-                }
+                    clients.Add(client);
+                    break;
 
-                return View(client);
+                case "name":
+                    clients = await _clientRepository.GetByName(searchValue);
+                    break;
+
+                case "city":
+                    clients = await _clientRepository.GetByCity(searchValue);
+                    break;
+
+                case "state":
+                    clients = await _clientRepository.GetByState(searchValue);
+                    break;
+
+                default:
+                    clients = new List<Client>();
+                    break;
             }
-            catch (Exception ex)
+
+            if (clients == null || clients.Count == 0)
             {
-                TempData["ErrorMessage"] = $"Erro ao atualizar cliente: {ex.Message}";
-                return View(client);
+                TempData["ErrorMessage"] = "Nenhum cliente encontrado para o critério informado.";
+                return RedirectToAction(nameof(Index));
             }
-        }
 
-        // ==================== DELETE ====================
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Guid id)
+            ViewBag.PageTitle = $"Resultados da busca: {searchValue}";
+            return View("Index", clients);
+        }
+        catch (Exception ex)
         {
-            try
-            {
-                await _clientRepository.DeleteById(id);
-                TempData["SuccessMessage"] = "Cliente excluído com sucesso!";
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao excluir cliente: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
+            TempData["ErrorMessage"] = $"Erro ao buscar clientes: {ex.Message}";
+            return RedirectToAction(nameof(Index));
         }
+    }
 
-        // ==================== SEARCH ====================
-        [HttpGet]
-        public async Task<IActionResult> Search(string searchType, string searchValue)
+    // ==================== FILTROS ESPECIAIS ====================
+    [HttpGet]
+    [Authorize(Roles = "Admin,Client")]
+    public async Task<IActionResult> WithReservations()
+    {
+        try
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(searchValue))
-                {
-                    TempData["ErrorMessage"] = "Por favor, informe um valor para busca.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                List<Client> clients = searchType switch
-                {
-                    "name" => await _clientRepository.GetByName(searchValue),
-                    "cpf" => new List<Client> { await _clientRepository.GetByCpf(searchValue) }.Where(c => c != null).ToList()!,
-                    "email" => new List<Client> { await _clientRepository.GetByEmail(searchValue) }.Where(c => c != null).ToList()!,
-                    "city" => await _clientRepository.GetByCity(searchValue),
-                    "state" => await _clientRepository.GetByState(searchValue),
-                    _ => new List<Client>()
-                };
-
-                ViewBag.PageTitle = $"Resultados da busca: {searchValue}";
-                return View("Index", clients);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao buscar clientes: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
+            var clients = await _clientRepository.GetClientsWithReservations();
+            ViewBag.PageTitle = "Clientes com Reservas";
+            return View("Index", clients);
         }
-
-        // ==================== FILTROS ESPECIAIS ====================
-        [HttpGet]
-        public async Task<IActionResult> WithReservations()
+        catch 
         {
-            try
-            {
-                var clients = await _clientRepository.GetClientsWithReservations();
-                ViewBag.PageTitle = "Clientes com Reservas";
-                return View("Index", clients);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao carregar clientes: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
+            TempData["ErrorMessage"] = new ResponseViewModel<Client>(ConstantsMessage.ERRO_SERVIDOR);
+            return RedirectToAction(nameof(Index));
         }
+    }
 
-        [HttpGet]
-        public async Task<IActionResult> BirthdayMonth(int? month)
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> BirthdayMonth(int? month)
+    {
+        try
         {
-            try
-            {
-                int targetMonth = month ?? DateTime.Now.Month;
-                var clients = await _clientRepository.GetBirthdayClientsOfMonth(targetMonth);
+            int targetMonth = month ?? DateTime.Now.Month;
+            var clients = await _clientRepository.GetBirthdayClientsOfMonth(targetMonth);
 
-                ViewBag.PageTitle = $"Aniversariantes do mês {targetMonth}";
-                return View("Index", clients);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = $"Erro ao carregar aniversariantes: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
+            ViewBag.PageTitle = $"Aniversariantes do mês {targetMonth}";
+            return View("Index", clients);
         }
+        catch 
+        {
+            TempData["ErrorMessage"] = new ResponseViewModel<Client>(ConstantsMessage.ERRO_SERVIDOR);
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetByStatus(Status status)
+    {
+        try
+        {
+            var clients = await _clientRepository.GetByStatus(status);
+
+            if (clients == null || !clients.Any())
+                return NotFound($"Nenhum cliente encontrado com status '{status}'.");
+
+            return Ok(clients);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> GetByPriority(bool priority)
+    {
+        try
+        {
+            var clients = await _clientRepository.GetByPriority(priority);
+
+            if (clients == null || !clients.Any())
+                return NotFound(priority
+                    ? "Nenhum cliente prioritário encontrado."
+                    : "Nenhum cliente comum encontrado.");
+
+            return Ok(clients);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erro interno no servidor: {ex.Message}");
+        }
+    }
 
         // ==================== API ENDPOINTS (opcional) ====================
         [HttpGet]
-        public async Task<IActionResult> CheckCpf(string cpf)
-        {
-            var exists = await _clientRepository.CpfExists(cpf);
-            return Json(new { exists });
-        }
+    public async Task<IActionResult> CheckCpf(string cpf)
+    {
+        var exists = await _clientRepository.CpfExists(cpf);
+        return Json(new { exists });
+    }
 
-        [HttpGet]
-        public async Task<IActionResult> CheckEmail(string email)
-        {
-            var exists = await _clientRepository.EmailExists(email);
-            return Json(new { exists });
-        }
+    [HttpGet]
+    public async Task<IActionResult> CheckEmail(string email)
+    {
+        var exists = await _clientRepository.EmailExists(email);
+        return Json(new { exists });
     }
 }
